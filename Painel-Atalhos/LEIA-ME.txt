@@ -1,0 +1,108 @@
+MEUS ATALHOS - Windows 10/11
+
+1. Extraia TODOS os arquivos do ZIP para uma pasta permanente.
+2. Abra Iniciar.vbs com um duplo clique normal, sem Executar como administrador.
+   Ele abre o painel sem mostrar o terminal. Se o Windows bloquear VBS,
+   use Iniciar.cmd normalmente como alternativa.
+3. Clique em + Adicionar e informe uma URL ou caminho, um nome e um grupo.
+4. Clique no cartao criado para abrir o destino.
+
+DESTINOS ACEITOS
+- URLs http:// e https://, abertas no navegador padrao.
+- Enderecos iniciados com www. recebem https:// automaticamente.
+- Pastas ou arquivos locais: C:\Documentos ou C:\Documentos\relatorio.pdf.
+- Unidades mapeadas: Z:\Financeiro.
+- Caminhos de rede UNC: \\servidor\compartilhamento\pasta.
+- Servidor de rede: \\servidor.
+- Caminhos com variaveis de ambiente: %USERPROFILE%\Documents.
+- Enderecos file:// sao convertidos para o caminho correspondente.
+
+Pastas abrem pelo Windows; arquivos usam o aplicativo associado.
+Os destinos sao abertos somente quando voce clicar. Adicionar um caminho
+nao consulta a disponibilidade da rede nem armazena senhas.
+O acesso usa as permissoes/conexoes de rede do seu Windows; servidores podem
+solicitar autenticacao. Prefira executar o painel com o seu usuario normal
+para enxergar as unidades de rede mapeadas nesse usuario.
+
+ADICIONAR VARIOS
+Clique em Adicionar varios e cole um destino por linha:
+
+https://intranet.empresa.com
+\\servidor\compartilhamento
+C:\Documentos
+
+Ou use nomes personalizados separados por uma barra vertical:
+
+Intranet | https://intranet.empresa.com
+Financeiro | \\servidor\financeiro
+Documentos | %USERPROFILE%\Documents
+
+Escolha o grupo e clique Adicionar. Linhas vazias sao ignoradas.
+Se houver uma linha invalida, nada desse lote e salvo ate voce corrigi-la.
+Destinos duplicados sao ignorados. Para renomear, use Editar.
+Se uma URL contiver uma barra vertical literal, use %7C no endereco ao colar
+em lote, pois | e o separador de nome/destino nesse formato.
+
+ORGANIZACAO
+Busque por nome, grupo ou destino. Filtre pelo grupo na caixa ao lado.
+Atalhos aparecem em ordem alfabetica por grupo e nome, 8 por pagina.
+Anterior/Proxima permitem navegar por todas as paginas, sem rolagem nos cartoes.
+Clique com o botao direito: abrir, editar, copiar destino ou remover.
+Importar adiciona atalhos de um JSON exportado por este painel, preservando
+os existentes e ignorando destinos duplicados. Exportar salva toda a lista.
+Importacao valida todos os itens antes de salvar; nao abre os destinos.
+
+APARENCIA
+Arraste o titulo para posicionar o painel. Largura natural: 480 pixels
+logicos; o tamanho se adapta a escala do Windows e a area util da tela.
+Opcoes: Semitransparente (50%) e Totalmente visivel (100%).
+Animacoes suaves de abertura, opacidade e destaque ao passar o mouse.
+Respeitam a preferencia de animacoes da interface do Windows.
+Desmarque Manter sobre as janelas para permitir que outras janelas cubram
+o painel. Iniciar.cmd novamente recupera o painel em 100%, sem duplicar.
+
+SALVAMENTO E BACKUP
+Adicoes, edicoes, remocoes e importacoes sao salvas imediatamente.
+Posicao e aparencia sao salvas ao fechar pelo X.
+Dados ficam em %LOCALAPPDATA%\PainelAtalhos\atalhos.json.
+A gravacao substitui o arquivo de forma atomica e conserva a versao anterior
+em atalhos.json.bak. Exportar permite manter uma copia em outro local.
+Se o arquivo de dados estiver invalido, o painel preserva o original e
+informa o erro. Para recuperar, feche o painel, guarde uma copia do arquivo
+original e use a copia atalhos.json.bak para restaurar atalhos.json.
+
+INICIO AUTOMATICO
+Opcional: execute Ativar-Inicio-Automatico.cmd. Mantenha a pasta no mesmo
+local. Para remover: Desativar-Inicio-Automatico.cmd, feche o painel e
+apague a pasta extraida. Seus atalhos continuam na pasta de dados acima.
+Pode conviver com o widget de discos e com o Monitor Desktop completo.
+
+DIAGNOSTICO
+Nao precisa de administrador nem de downloads adicionais.
+Os CMD usam o Windows PowerShell 5.1 com ExecutionPolicy Bypass apenas
+nesse processo; politicas corporativas podem impedir a execucao.
+Erro de inicializacao: %LOCALAPPDATA%\PainelAtalhos\erro.txt.
+VISUAL REFINADO E PERMISSOES
+Cartoes com icones vetoriais e cores por tipo: azul para site, dourado para
+pastas, verde para rede. Nome, grupo e destino aparecem em cada cartao.
+Botoes arredondados, acao principal destacada, busca identificada e filtro
+escuro. Os dialogos de adicionar/editar usam o mesmo tema visual.
+Mantidos hover animado, opacidade e abertura suave.
+
+O painel usa somente as permissoes normais do usuario que o inicia.
+Nao solicita elevacao, nao grava em pastas do sistema nem cria tarefas
+administrativas. Inicio automatico usa apenas a pasta Startup do usuario.
+Extraia para Documentos ou outra pasta onde voce tenha permissao de leitura.
+O programa nao concede acesso a compartilhamentos sem permissao: ao abrir
+um destino, o Windows continua aplicando as credenciais e permissoes desse
+usuario. Um arquivo/aplicativo de destino pode ter suas proprias exigencias.
+Se a empresa bloquear PowerShell ou Windows Script Host, essa restricao
+continua valendo; o painel nao altera as politicas do computador.
+
+ATUALIZAR SEM PERDER ATALHOS
+Feche o painel antigo pelo X e substitua os arquivos na mesma pasta por
+estes. Abra Iniciar.vbs. Os atalhos continuam em atalhos.json no seu perfil.
+O atalho de inicio automatico existente continua valido se a pasta for a mesma.
+
+Sintaxe e estrutura verificadas. Interface e abertura de destinos reais
+dependem de Windows e nao puderam ser executadas no ambiente de criacao.
